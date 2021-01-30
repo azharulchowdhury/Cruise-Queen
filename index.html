@@ -58,20 +58,20 @@
             <div class="input-group f-class">
                 <div>
                     <label for="">First Class ($150)</label>
-                    <input class="inp-style inp-width" type="number" name="">
+                    <input id="quantity-first" class="inp-style inp-width" type="number" name="">
                 </div>
                 <div class="plus-minus-btn">
-                    <p>+ -</p>
+                    <p><span id="plus-first">+</span> <span id="minus-first">-</span> </p>
                 </div>
             </div>
             
             <div class="input-group f-class">
                 <div>
                     <label for="">Economy ($100)</label>
-                    <input class="inp-style inp-width" type="number" name="">
+                    <input id="quantity-economy" class="inp-style inp-width" type="number" name="">
                 </div>
                 <div class="plus-minus-btn">
-                    <p> <span>+</span> <span>-</span> </p>
+                    <p><span id="plus-economy">+</span> <span id="minus-economy">-</span> </p>
                 </div>
             </div>
             <div class="calculations">
@@ -105,6 +105,127 @@
             <button class="btn-style">Book Now</button>
         </div>
     </main>
+
+    <!-- JavaScript portion -->
+    <!-- <script>
+        
+        document.getElementById("plus-first").addEventListener("click", function(){
+            const firstClass=document.getElementById("quantity-first").value;
+            const quantityFirst = parseInt(firstClass);
+            requiredQuantityFirst=quantityFirst+1;
+            document.getElementById("quantity-first").value= requiredQuantityFirst;
+            costFirstClass=requiredQuantityFirst*150;
+        });
+        document.getElementById("minus-first").addEventListener("click", function(){
+            const firstClass=document.getElementById("quantity-first").value;
+            const quantityFirst = parseInt(firstClass);
+            requiredQuantityFirst=quantityFirst-1;
+            document.getElementById("quantity-first").value= requiredQuantityFirst;
+            costFirstClass=requiredQuantityFirst*150;
+        });
+        
+
+        document.getElementById("plus-economy").addEventListener("click", function(){
+            const economyClass=document.getElementById("quantity-economy").value;
+            const quantityEconomy = parseInt(economyClass);
+            requiredQuantityEconomy=quantityEconomy+1;
+            document.getElementById("quantity-economy").value= requiredQuantityEconomy;
+            costEconomyClass=requiredQuantityEconomy*100;
+        });
+        document.getElementById("minus-economy").addEventListener("click", function(){
+            const economyClass=document.getElementById("quantity-economy").value;
+            const quantityEconomy= parseInt(economyClass);
+            requiredQuantityEconomy=quantityEconomy-1;
+            document.getElementById("quantity-economy").value= requiredQuantityEconomy;
+            costEconomyClass=requiredQuantityEconomy*100;
+        });
+
+
+       
+    </script> -->
+    <script>
+        
+        
+        document.getElementById("plus-first").addEventListener("click", function(){
+            increasingValue(true);
+           });
+        document.getElementById("minus-first").addEventListener("click", function(){
+            increasingValue(false);
+            
+        });
+        // document.getElementById("plus-economy").addEventListener("click", function(){
+        //     increasingValue(true);
+        //    });
+        // document.getElementById("minus-economy").addEventListener("click", function(){
+        //     increasingValue(false);
+        //    });
+
+           function increasingValue(isIncrease){
+
+            const userInput=document.getElementById("quantity-first").value;
+            const quantity= parseInt(userInput);
+            // let requiredQuantity= quantity;
+            // console.log(requiredQuantity);
+            
+               if(isIncrease==false && quantity>0){
+                requiredQuantity=quantity-1;
+                document.getElementById("quantity-first").value=requiredQuantity;
+               }
+               if(isIncrease==true){
+                // value=quantityFirst;
+                // requiredQuantityFirst=value;
+                requiredQuantity=quantity+1;
+                document.getElementById("quantity-first").value=requiredQuantity;
+               }
+               }
+             
+               
+        // function increasingValue(isIncrease){
+        //     const firstClass=document.getElementById("quantity-first").value;
+        //     const quantityFirst = parseInt(firstClass);
+        //     costFirstClass=requiredQuantityFirst*150;
+
+        //     if(isIncrease==true){
+        //         requiredQuantityFirst=quantityFirst+1;
+        //     document.getElementById("quantity-first").value= requiredQuantityFirst;
+        
+            // else(isIncrease==false && requiredQuantityFirst>=0);{
+            //     requiredQuantityFirst=quantityFirst-1;
+            //     document.getElementById("quantity-first").value= requiredQuantityFirst;
+
+            // }
+            
+            
+        
+
+
+        // document.getElementById("minus-first").addEventListener("click", function(){
+        //     const firstClass=document.getElementById("quantity-first").value;
+        //     const quantityFirst = parseInt(firstClass);
+        //     // requiredQuantityFirst=quantityFirst-1;
+        //     // document.getElementById("quantity-first").value= requiredQuantityFirst;
+        //     costFirstClass=requiredQuantityFirst*150;
+        // });
+        
+
+        // document.getElementById("plus-economy").addEventListener("click", function(){
+        //     const economyClass=document.getElementById("quantity-economy").value;
+        //     const quantityEconomy = parseInt(economyClass);
+        //     requiredQuantityEconomy=quantityEconomy+1;
+        //     document.getElementById("quantity-economy").value= requiredQuantityEconomy;
+        //     costEconomyClass=requiredQuantityEconomy*100;
+        // });
+        // document.getElementById("minus-economy").addEventListener("click", function(){
+        //     const economyClass=document.getElementById("quantity-economy").value;
+        //     const quantityEconomy= parseInt(economyClass);
+        //     requiredQuantityEconomy=quantityEconomy-1;
+        //     document.getElementById("quantity-economy").value= requiredQuantityEconomy;
+        //     costEconomyClass=requiredQuantityEconomy*100;
+        // });
+
+
+       
+    </script>
 
     <!--Thank You-->
 </body>
