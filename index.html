@@ -27,7 +27,7 @@
     </header>
 
     <!--Booking Section-->
-    <main class="main-content container">
+    <main id="invisible"class="main-content container">
 
         <div class="booking-content">
             <h1>Cruise Queen</h1>
@@ -80,7 +80,7 @@
                         <p>Subtotal</p>
                     </div>
                     <div class="right">
-                        <p>$500</p>
+                        <p>$<span id="subTotal">00</span></p>
                     </div>
                 </div>
 
@@ -89,7 +89,7 @@
                         <p>Charge 10% VAT</p>
                     </div>
                     <div class="right">
-                        <p>$50</p>
+                        <p>$<span id="tax">00</span></p>
                     </div>
                 </div>
                 <hr>
@@ -98,133 +98,92 @@
                         <h4>Total</h4>
                     </div>
                     <div class="right">
-                        <p>$550</p>
+                        <p>$<span id="total">00</span></p>
                     </div>
                 </div>
             </div>
-            <button class="btn-style">Book Now</button>
+            <button id="book-now" class="btn-style">Book Now</button>
+           
+
         </div>
-    </main>
-
-    <!-- JavaScript portion -->
-    <!-- <script>
-        
-        document.getElementById("plus-first").addEventListener("click", function(){
-            const firstClass=document.getElementById("quantity-first").value;
-            const quantityFirst = parseInt(firstClass);
-            requiredQuantityFirst=quantityFirst+1;
-            document.getElementById("quantity-first").value= requiredQuantityFirst;
-            costFirstClass=requiredQuantityFirst*150;
-        });
-        document.getElementById("minus-first").addEventListener("click", function(){
-            const firstClass=document.getElementById("quantity-first").value;
-            const quantityFirst = parseInt(firstClass);
-            requiredQuantityFirst=quantityFirst-1;
-            document.getElementById("quantity-first").value= requiredQuantityFirst;
-            costFirstClass=requiredQuantityFirst*150;
-        });
         
 
-        document.getElementById("plus-economy").addEventListener("click", function(){
-            const economyClass=document.getElementById("quantity-economy").value;
-            const quantityEconomy = parseInt(economyClass);
-            requiredQuantityEconomy=quantityEconomy+1;
-            document.getElementById("quantity-economy").value= requiredQuantityEconomy;
-            costEconomyClass=requiredQuantityEconomy*100;
-        });
-        document.getElementById("minus-economy").addEventListener("click", function(){
-            const economyClass=document.getElementById("quantity-economy").value;
-            const quantityEconomy= parseInt(economyClass);
-            requiredQuantityEconomy=quantityEconomy-1;
-            document.getElementById("quantity-economy").value= requiredQuantityEconomy;
-            costEconomyClass=requiredQuantityEconomy*100;
-        });
+    </main> 
+    <div id="booking-confirmation">
+        <h1>You have successfully been confirmed the booking. Happy Journey.</span></h1>
+    </div>
 
 
-       
-    </script> -->
+ <!-- JavaScript portion -->
+    
     <script>
+
         
-        
-        document.getElementById("plus-first").addEventListener("click", function(){
-            increasingValue(true);
+      
+       
+// function for first class userInput
+document.getElementById("plus-first").addEventListener("click", function(){
+            increasingValueFirstClass(true);
            });
         document.getElementById("minus-first").addEventListener("click", function(){
-            increasingValue(false);
+            increasingValueFirstClass(false);
             
         });
-        // document.getElementById("plus-economy").addEventListener("click", function(){
-        //     increasingValue(true);
-        //    });
-        // document.getElementById("minus-economy").addEventListener("click", function(){
-        //     increasingValue(false);
-        //    });
-
-           function increasingValue(isIncrease){
-
+           function increasingValueFirstClass(isIncrease){
             const userInput=document.getElementById("quantity-first").value;
             const quantity= parseInt(userInput);
-            // let requiredQuantity= quantity;
-            // console.log(requiredQuantity);
-            
                if(isIncrease==false && quantity>0){
                 requiredQuantity=quantity-1;
-                document.getElementById("quantity-first").value=requiredQuantity;
                }
                if(isIncrease==true){
-                // value=quantityFirst;
-                // requiredQuantityFirst=value;
                 requiredQuantity=quantity+1;
-                document.getElementById("quantity-first").value=requiredQuantity;
                }
+               document.getElementById("quantity-first").value=requiredQuantity;
+               calculate();
                }
-             
-               
-        // function increasingValue(isIncrease){
-        //     const firstClass=document.getElementById("quantity-first").value;
-        //     const quantityFirst = parseInt(firstClass);
-        //     costFirstClass=requiredQuantityFirst*150;
+// function for economy class userInput
 
-        //     if(isIncrease==true){
-        //         requiredQuantityFirst=quantityFirst+1;
-        //     document.getElementById("quantity-first").value= requiredQuantityFirst;
-        
-            // else(isIncrease==false && requiredQuantityFirst>=0);{
-            //     requiredQuantityFirst=quantityFirst-1;
-            //     document.getElementById("quantity-first").value= requiredQuantityFirst;
+document.getElementById("plus-economy").addEventListener("click", function(){
+            increasingValueEconomyClass(true);
+           });
+        document.getElementById("minus-economy").addEventListener("click", function(){
+            increasingValueEconomyClass(false);
+           });
+               function increasingValueEconomyClass(isIncrease){
+            const userInput=document.getElementById("quantity-economy").value;
+            const quantity= parseInt(userInput);
+               if(isIncrease==false && quantity>0){
+                requiredQuantity=quantity-1;
+               }
+               if(isIncrease==true){
+                requiredQuantity=quantity+1;
+               }
+               document.getElementById("quantity-economy").value=requiredQuantity;
+               calculate();
+               }
 
-            // }
+// function for cost calculation
+               function calculate(){
+                  const first =document.getElementById("quantity-first").value;
+                  const firstClass=parseInt(first);
+
+                  const economy =document.getElementById("quantity-economy").value;
+                  const economyClass=parseInt(economy);
+                const subtotal=firstClass*150+economyClass*100;
+                document.getElementById("subTotal").innerText=subtotal;
+                document.getElementById("tax").innerText=subtotal*0.1;
+                document.getElementById("total").innerText=subtotal*0.1+subtotal;
             
-            
-        
+               }
+
+// function for booking-confirmation
+               document.getElementById("book-now").addEventListener("click",function(){
+                   document.getElementById("invisible").style.display="none";
+                   document.getElementById("booking-confirmation").style.display="block";
+
+               })
 
 
-        // document.getElementById("minus-first").addEventListener("click", function(){
-        //     const firstClass=document.getElementById("quantity-first").value;
-        //     const quantityFirst = parseInt(firstClass);
-        //     // requiredQuantityFirst=quantityFirst-1;
-        //     // document.getElementById("quantity-first").value= requiredQuantityFirst;
-        //     costFirstClass=requiredQuantityFirst*150;
-        // });
-        
-
-        // document.getElementById("plus-economy").addEventListener("click", function(){
-        //     const economyClass=document.getElementById("quantity-economy").value;
-        //     const quantityEconomy = parseInt(economyClass);
-        //     requiredQuantityEconomy=quantityEconomy+1;
-        //     document.getElementById("quantity-economy").value= requiredQuantityEconomy;
-        //     costEconomyClass=requiredQuantityEconomy*100;
-        // });
-        // document.getElementById("minus-economy").addEventListener("click", function(){
-        //     const economyClass=document.getElementById("quantity-economy").value;
-        //     const quantityEconomy= parseInt(economyClass);
-        //     requiredQuantityEconomy=quantityEconomy-1;
-        //     document.getElementById("quantity-economy").value= requiredQuantityEconomy;
-        //     costEconomyClass=requiredQuantityEconomy*100;
-        // });
-
-
-       
     </script>
 
     <!--Thank You-->
